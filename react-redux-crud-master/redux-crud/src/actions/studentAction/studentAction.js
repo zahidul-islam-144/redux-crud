@@ -1,3 +1,4 @@
+import axios from "axios";
 import * as types from "../../constants/actionTypes";
 
 export const addStudentRequest = () => ({
@@ -18,3 +19,12 @@ export const addStudentFailure = (error) => ({
     error: error,
   },
 });
+
+export const createStudent = (studentData) => async (dispatch) => {
+  try {
+    dispatch(addStudentRequest());
+    await axios.post("", studentData);
+  } catch (error) {
+    dispatch(addStudentFailure(error.response.data.message));
+  }
+};
